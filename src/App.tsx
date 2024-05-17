@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import Ball from './components/ball-style';
 import "./index.css"
 import History from './components/history';
+import { IoIosUndo } from "react-icons/io";
+
 
 export interface BingoProps{
   number: number;
@@ -52,13 +54,15 @@ function App() {
   }
 
   return (
-    <div className="h-full grid grid-cols-12 gap-4  w-[65%] justify-items-center">
-      {numbers.map((item, index) => (
-        <Ball key={index} num={item} color={colors[index]} selectNum={selectedNumber}/>
-      ))}
+    <div className='flex flex-row w-full h-full justify-center gap-20 mt-8'>
+      <div className="h-full grid grid-cols-12 gap-4  w-[65%] justify-items-center">
+        {numbers.map((item, index) => (
+          <Ball key={index} num={item} color={colors[index]} selectNum={selectedNumber}/>
+        ))}
+      </div>
       <History data={history} undoData={undoSelectedNumber}/>
-      <button type='button' onClick={undoAction}>
-        Back
+      <button title='Voltar' type='button' onClick={undoAction} className='absolute bottom-4 right-4 bg-red-600 p-4'>
+        <IoIosUndo color='white'/>
       </button>
     </div>
   );
